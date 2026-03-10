@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+  <rect fill="#dcfce7" width="600" height="450"/>
+  <rect fill="#22c55e" x="150" y="100" width="300" height="200" rx="15"/>
+  <circle fill="#4ade80" cx="300" cy="180" r="40"/>
+  <rect fill="#86efac" x="220" y="240" width="160" height="40" rx="8"/>
+  <text x="300" y="380" font-family="sans-serif" font-size="20" fill="#14532d" text-anchor="middle">WO’fv - Discover</text>
+</svg>

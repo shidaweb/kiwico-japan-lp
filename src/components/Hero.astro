@@ -1,0 +1,72 @@
+---
+const formUrl = "https://forms.gle/REPLACE_ME";
+---
+
+<section class="relative bg-gradient-to-br from-amber-50 via-white to-orange-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Text Content -->
+      <div class="text-center lg:text-left">
+        <!-- Eyebrow -->
+        <span class="inline-block px-4 py-1.5 bg-amber-100 text-amber-700 text-sm font-medium rounded-full mb-6">
+          KiwiCo Japan Preview
+        </span>
+        
+        <!-- Headline -->
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+          世界で人気の<span class="text-amber-600">STEAM体験</span>を、<br class="hidden sm:block" />日本の家庭に。
+        </h1>
+        
+        <!-- Supporting Text -->
+        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
+          作って、試して、夢中になる。年齢に合わせた学びのキットを、日本のご家庭向けにわかりやすくお届けします。
+        </p>
+        
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a 
+            href={formUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 text-lg"
+          >
+            事前お申し込みはこちら
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a 
+            href="#how-it-works"
+            class="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-full border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 text-lg"
+          >
+            サービスを見る
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Hero Image -->
+      <div class="relative lg:order-last">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src="/images/hero.jpg" 
+            alt="子どもがSTEAMキットで楽しく学んでいる様子"
+            class="w-full h-auto object-cover aspect-[4/3]"
+          />
+        </div>
+        <!-- Decorative Elements -->
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-amber-200 rounded-full opacity-50 blur-xl"></div>
+        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-orange-200 rounded-full opacity-50 blur-xl"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bottom Wave -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+      <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+    </svg>
+  </div>
+</section>

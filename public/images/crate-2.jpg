@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+  <rect fill="#dbeafe" width="600" height="450"/>
+  <rect fill="#3b82f6" x="150" y="100" width="300" height="200" rx="15"/>
+  <circle fill="#60a5fa" cx="300" cy="180" r="40"/>
+  <rect fill="#93c5fd" x="220" y="240" width="160" height="40" rx="8"/>
+  <text x="300" y="380" font-family="sans-serif" font-size="20" fill="#1e3a8a" text-anchor="middle">ŸY‹ - Experiment</text>
+</svg>
