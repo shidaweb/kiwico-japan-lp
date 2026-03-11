@@ -1,0 +1,43 @@
+---
+const stats = [
+  {
+    number: "4千万以上",
+    label: "キット出荷数",
+    sublabel: "世界累計"
+  },
+  {
+    number: "100+",
+    label: "受賞歴",
+    sublabel: "教育関連部門賞"
+  },
+  {
+    number: "190+",
+    label: "対応国・地域",
+    sublabel: "グローバル展開"
+  }
+];
+---
+
+<section class="py-12 bg-white border-y border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <p class="text-gray-500 text-sm font-medium">世界中の家庭で選ばれています</p>
+    </div>
+    
+    <div class="grid grid-cols-3 gap-4 md:gap-8">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-600 mb-1">
+            {stat.number}
+          </div>
+          <div class="text-sm sm:text-base font-medium text-gray-900">
+            {stat.label}
+          </div>
+          <div class="text-xs text-gray-500 hidden sm:block">
+            {stat.sublabel}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

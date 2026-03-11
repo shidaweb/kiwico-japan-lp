@@ -1,20 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import SocialProof from '../components/SocialProof.astro';
+import MediaMentions from '../components/MediaMentions.astro';
 import WhyKiwiCo from '../components/WhyKiwiCo.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import ProductHighlights from '../components/ProductHighlights.astro';
+import Awards from '../components/Awards.astro';
+import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
+  <Header />
   <main>
     <Hero />
+    <SocialProof />
+    <MediaMentions />
     <WhyKiwiCo />
     <HowItWorks />
     <ProductHighlights />
+    <Awards />
+    <Testimonials />
     <FAQ />
     <CTASection />
   </main>
