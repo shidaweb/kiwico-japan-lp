@@ -47,18 +47,100 @@ const formUrl = "https://forms.gle/3DC4hfCGngB2r6CU6";
         </div>
       </div>
       
-      <!-- Hero Image -->
-      <div class="relative lg:order-last">
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-          <img 
-            src="/images/hero.jpg" 
-            alt="子どもがSTEAMキットで楽しく学んでいる様子"
-            class="w-full h-auto object-cover aspect-[4/3]"
-          />
+      <!-- Hero GIF Carousel -->
+      <div class="relative lg:order-last" id="hero-gif-carousel">
+        <div class="relative aspect-square rounded-3xl overflow-hidden shadow-2xl bg-white">
+          <!-- Slide 1 -->
+          <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-700" data-index="0">
+            <picture>
+              <source srcset="/images/gifs/desktop/LAB1ACH-Hero.webp" type="image/webp" media="(min-width: 640px)" />
+              <source srcset="/images/gifs/mobile/LAB1ACH-Hero.webp" type="image/webp" />
+              <img
+                src="/images/gifs/source/PDP-LAB1ACH-Product-Hero-GIF-2024-08-26_0377.gif"
+                alt="アーチェリーキット — 自分で作った弓で的当て"
+                class="w-full h-full object-cover gif-viewport"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-700" data-index="1">
+            <picture>
+              <source srcset="/images/gifs/desktop/K2BOD-Hero.webp" type="image/webp" media="(min-width: 640px)" />
+              <source srcset="/images/gifs/mobile/K2BOD-Hero.webp" type="image/webp" />
+              <img
+                src="/images/gifs/source/1000x1000-PDP-K2BOD-Product-Hero-GIF.gif"
+                alt="からだの仕組みキット"
+                class="w-full h-full object-cover gif-viewport"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-700" data-index="2">
+            <picture>
+              <source srcset="/images/gifs/desktop/LAB1SPA-Hero.webp" type="image/webp" media="(min-width: 640px)" />
+              <source srcset="/images/gifs/mobile/LAB1SPA-Hero.webp" type="image/webp" />
+              <img
+                src="/images/gifs/source/Store-PDP-LAB1SPA-Product-Hero-GIF-2024-09-11_Frame01.gif"
+                alt="スピンアートマシン"
+                class="w-full h-full object-cover gif-viewport"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-700" data-index="3">
+            <picture>
+              <source srcset="/images/gifs/desktop/O2LAV-Hero.webp" type="image/webp" media="(min-width: 640px)" />
+              <source srcset="/images/gifs/mobile/O2LAV-Hero.webp" type="image/webp" />
+              <img
+                src="/images/gifs/source/1000x1000-PDP-O2LAV-Product-Hero-GIF.gif"
+                alt="バブルランプキット"
+                class="w-full h-full object-cover gif-viewport"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-700" data-index="4">
+            <picture>
+              <source srcset="/images/gifs/desktop/K2REP-Hero.webp" type="image/webp" media="(min-width: 640px)" />
+              <source srcset="/images/gifs/mobile/K2REP-Hero.webp" type="image/webp" />
+              <img
+                src="/images/gifs/source/1000x1000-PDP-K2REP-Product-Hero-GIF.gif"
+                alt="レプタイルキット"
+                class="w-full h-full object-cover gif-viewport"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <!-- Slide Label -->
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+            <p id="hero-slide-label" class="text-white text-sm font-medium">アーチェリーキット</p>
+          </div>
         </div>
+
+        <!-- Dots -->
+        <div class="flex justify-center gap-2 mt-4">
+          <button class="w-2.5 h-2.5 rounded-full bg-emerald-500 carousel-dot" data-index="0"></button>
+          <button class="w-2.5 h-2.5 rounded-full bg-gray-300 carousel-dot" data-index="1"></button>
+          <button class="w-2.5 h-2.5 rounded-full bg-gray-300 carousel-dot" data-index="2"></button>
+          <button class="w-2.5 h-2.5 rounded-full bg-gray-300 carousel-dot" data-index="3"></button>
+          <button class="w-2.5 h-2.5 rounded-full bg-gray-300 carousel-dot" data-index="4"></button>
+        </div>
+
         <!-- Decorative Elements -->
-        <div class="absolute -top-4 -right-4 w-24 h-24 bg-emerald-200 rounded-full opacity-50 blur-xl"></div>
-        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-teal-200 rounded-full opacity-50 blur-xl"></div>
+        <div class="pointer-events-none" aria-hidden="true">
+          <div class="absolute -top-4 -right-4 w-24 h-24 bg-emerald-200 rounded-full opacity-50 blur-xl"></div>
+          <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-teal-200 rounded-full opacity-50 blur-xl"></div>
+        </div>
       </div>
     </div>
   </div>

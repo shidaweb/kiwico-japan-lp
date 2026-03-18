@@ -43,6 +43,52 @@ const steps = [
           )}
           
           <div class="relative bg-white p-8 rounded-2xl shadow-sm z-10">
+            <!-- GIF Thumbnail -->
+            {index === 0 && (
+              <div class="aspect-video rounded-xl overflow-hidden bg-gray-100 mb-4">
+                <picture>
+                  <source srcset="/images/gifs/desktop/K2BOD-Detail.webp" type="image/webp" />
+                  <img
+                    src="/images/gifs/source/1000x1000-PDP-K2BOD-Product-Detail-GIF.gif"
+                    alt="キットを選ぶ様子"
+                    class="w-full h-full object-cover gif-viewport"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            )}
+            {index === 1 && (
+              <div class="aspect-video rounded-xl overflow-hidden bg-gray-100 mb-4">
+                <picture>
+                  <source
+                    srcset="/images/gifs/desktop/K2BOD-Collateral.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="/images/gifs/source/1000x1000-PDP-K2BOD-Collateral-GIF.gif"
+                    alt="キットを受け取る様子"
+                    class="w-full h-full object-cover gif-viewport"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            )}
+            {index === 2 && (
+              <div class="aspect-video rounded-xl overflow-hidden bg-gray-100 mb-4">
+                <picture>
+                  <source
+                    srcset="/images/gifs/desktop/LAB1SPA-lifestyle.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="/images/gifs/source/PDP-LAB1SPA-lifestyle-GIF.gif"
+                    alt="子どもがキットで遊んで学ぶ様子"
+                    class="w-full h-full object-cover gif-viewport"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            )}
             <div class="inline-flex items-center justify-center w-12 h-12 bg-emerald-500 text-white font-bold rounded-full mb-4">
               {step.number}
             </div>

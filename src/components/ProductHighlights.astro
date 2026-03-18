@@ -1,23 +1,26 @@
 ---
 const products = [
   {
-    image: "/images/crate-1.jpg",
+    id: "create",
     title: "つくる",
     subtitle: "Create",
-    description: "自分の手で形にする喜び。工作やものづくりを通じて、創造力と自信を育みます。"
+    description:
+      "自分の手で形にする喜び。工作やものづくりを通じて、創造力と自信を育みます。",
   },
   {
-    image: "/images/crate-2.jpg",
+    id: "experiment",
     title: "実験する",
     subtitle: "Experiment",
-    description: "なぜ？どうして？を自分で確かめる。科学の面白さを体感できる実験キット。"
+    description:
+      "なぜ？どうして？を自分で確かめる。科学の面白さを体感できる実験キット。",
   },
   {
-    image: "/images/crate-3.jpg",
+    id: "discover",
     title: "しくみを学ぶ",
     subtitle: "Discover",
-    description: "身の回りのしくみを理解する。エンジニアリングの基礎を遊びながら学びます。"
-  }
+    description:
+      "身の回りのしくみを理解する。エンジニアリングの基礎を遊びながら学びます。",
+  },
 ];
 ---
 
@@ -41,12 +44,43 @@ const products = [
       {products.map((product) => (
         <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100">
           <div class="relative overflow-hidden aspect-[4/3]">
-            <img 
-              src={product.image} 
-              alt={`${product.title}のキットイメージ`}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            {product.id === "create" && (
+              <picture>
+                <source
+                  srcset="/images/gifs/desktop/LAB1ACH-Detail-0429.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/gifs/source/PDP-LAB1ACH-Product-Detail-GIF-2024-08-26_0429_v2.gif"
+                  alt="つくるキットイメージ"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 gif-viewport"
+                  loading="lazy"
+                />
+              </picture>
+            )}
+            {product.id === "experiment" && (
+              <picture>
+                <source srcset="/images/gifs/desktop/O2LAV-Hero.webp" type="image/webp" />
+                <img
+                  src="/images/gifs/source/1000x1000-PDP-O2LAV-Product-Hero-GIF.gif"
+                  alt="実験するキットイメージ"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 gif-viewport"
+                  loading="lazy"
+                />
+              </picture>
+            )}
+            {product.id === "discover" && (
+              <picture>
+                <source srcset="/images/gifs/desktop/O2SWE-Detail.webp" type="image/webp" />
+                <img
+                  src="/images/gifs/source/1000x1000-PDP-O2SWE-Product-Detail-GIF.gif"
+                  alt="しくみを学ぶキットイメージ"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 gif-viewport"
+                  loading="lazy"
+                />
+              </picture>
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to透明"></div>
           </div>
           <div class="p-6">
             <div class="flex items-baseline gap-2 mb-2">

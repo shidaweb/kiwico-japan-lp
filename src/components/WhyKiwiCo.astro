@@ -1,20 +1,25 @@
 ---
 const benefits = [
   {
+    id: "create-fun",
     icon: "✨",
     title: "作りながら、楽しく学べる",
-    description: "手を動かしながら学ぶことで、子どもの好奇心に火がつきます。遊びの延長で、自然と探究心が育まれます。"
+    description:
+      "手を動かしながら学ぶことで、子どもの好奇心に火がつきます。遊びの延長で、自然と探究心が育まれます。",
   },
   {
+    id: "age-fit",
     icon: "🎯",
     title: "年齢に合わせた設計",
-    description: "子供の成長に合わせて、達成感を得られる体験を提供します。"
+    description: "子供の成長に合わせて、達成感を得られる体験を提供します。",
   },
   {
+    id: "ready-to-start",
     icon: "📦",
     title: "開けたらすぐに始められるデザイン",
-    description: "必要な材料はすべてキットに含まれています。届いたらすぐに始められるから、忙しいご家庭でも安心。"
-  }
+    description:
+      "必要な材料はすべてキットに含まれています。届いたらすぐに始められるから、忙しいご家庭でも安心。",
+  },
 ];
 ---
 
@@ -39,7 +44,58 @@ const benefits = [
         <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
           <div class="text-4xl mb-4">{benefit.icon}</div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
-          <p class="text-gray-600 leading-relaxed">{benefit.description}</p>
+          <p class="text-gray-600 leading-relaxed mb-4">{benefit.description}</p>
+
+          {benefit.id === "create-fun" && (
+            <div class="mt-2 aspect-video rounded-xl overflow-hidden bg-gray-50">
+              <picture>
+                <source
+                  srcset="/images/gifs/desktop/LAB1SPA-Hero.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/gifs/source/Store-PDP-LAB1SPA-Product-Hero-GIF-2024-09-11_Frame01.gif"
+                  alt="回転しながら絵ができるスピンアートキット"
+                  class="w-full h-full object-cover gif-viewport"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          )}
+
+          {benefit.id === "age-fit" && (
+            <div class="mt-2 aspect-video rounded-xl overflow-hidden bg-gray-50">
+              <picture>
+                <source
+                  srcset="/images/gifs/desktop/K2REP-Hero.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/gifs/source/1000x1000-PDP-K2REP-Product-Hero-GIF.gif"
+                  alt="4歳向けのレプタイルパズルキット"
+                  class="w-full h-full object-cover gif-viewport"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          )}
+
+          {benefit.id === "ready-to-start" && (
+            <div class="mt-2 aspect-video rounded-xl overflow-hidden bg-gray-50">
+              <picture>
+                <source
+                  srcset="/images/gifs/desktop/O2LAV-Collateral.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/gifs/source/1000x1000-PDP-O2LAV-Collateral-GIF.gif"
+                  alt="バブルランプキットの同梱物が並んでいる様子"
+                  class="w-full h-full object-cover gif-viewport"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          )}
         </div>
       ))}
     </div>

@@ -2,41 +2,98 @@
 const formUrl = "https://forms.gle/3DC4hfCGngB2r6CU6";
 ---
 
-<section class="py-16 md:py-24 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <!-- Icon -->
-    <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-500 rounded-full mb-8">
-      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-      </svg>
+<section id="pre-register" class="relative py-20 md:py-28 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-emerald-900"></div>
+
+  <div class="absolute inset-0 opacity-[0.07] pointer-events-none">
+    <img
+      src="/images/gifs/static/LAB1ACH-Hero.jpg"
+      class="absolute top-10 left-10 w-48 rounded-2xl rotate-[-8deg]"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="/images/gifs/static/O2LAV-Hero.jpg"
+      class="absolute top-20 right-16 w-40 rounded-2xl rotate-[5deg]"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="/images/gifs/static/K2BOD-Hero.jpg"
+      class="absolute bottom-16 left-1/4 w-44 rounded-2xl rotate-[3deg]"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="/images/gifs/static/LAB1SPA-Hero.jpg"
+      class="absolute bottom-10 right-1/4 w-36 rounded-2xl rotate-[-4deg]"
+      alt=""
+      loading="lazy"
+    />
+  </div>
+
+  <div class="relative max-w-3xl mx-auto px-4 text-center">
+    <div
+      class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full px-4 py-1.5 mb-6"
+    >
+      <span class="relative flex h-2.5 w-2.5">
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+        ></span>
+        <span
+          class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
+        ></span>
+      </span>
+      <span class="text-emerald-300 text-sm font-medium">まもなくサービス開始</span>
     </div>
-    
-    <!-- Heading -->
-    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
       日本での展開をお楽しみに
     </h2>
-    
-    <!-- Supporting Text -->
-    <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-      世界中で愛されているSTEAM教育体験を、日本のご家庭にお届けする準備を進めています。事前にお申し込みいただくと、最新情報をいち早くお届けします。
+    <p class="text-gray-300 text-lg mb-8 max-w-xl mx-auto">
+      世界中で愛されているSTEAM教育体験を、日本のご家庭にお届けする準備を進めています。
+      事前にお申し込みいただくと、最新情報をいち早くお届けします。
     </p>
-    
-    <!-- CTA Button -->
-    <a 
-      href={formUrl}
+
+    <form
+      class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-4"
+      action={formUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center justify-center px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 text-lg"
     >
-      事前お申し込みはこちら
-      <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
-    </a>
-    
-    <!-- Trust Signal -->
-    <p class="text-gray-400 text-sm mt-6">
+      <input
+        type="email"
+        placeholder="メールアドレスを入力"
+        class="flex-1 px-5 py-3.5 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-sm"
+        required
+      />
+      <button
+        type="submit"
+        class="px-8 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-full transition-colors shadow-lg shadow-emerald-500/30 whitespace-nowrap"
+      >
+        事前お申し込み →
+      </button>
+    </form>
+
+    <p class="text-gray-500 text-xs">
       ご登録いただいた情報は、KiwiCo Japanからのご案内にのみ使用いたします。
     </p>
+
+    <div
+      class="flex items-center justify-center gap-6 mt-8 text-gray-400 text-sm flex-wrap"
+    >
+      <span class="flex items-center gap-1.5">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        SSL暗号化
+      </span>
+      <span>4千万キット出荷実績</span>
+      <span>100+受賞歴</span>
+    </div>
   </div>
 </section>
