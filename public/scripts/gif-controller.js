@@ -3,20 +3,9 @@
 
   const GIF_SELECTOR = '.gif-viewport';
 
-  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  if (reduceMotionQuery.matches) {
-    document.querySelectorAll(GIF_SELECTOR).forEach((img) => {
-      if (!(img instanceof HTMLImageElement)) return;
-      const original = img.getAttribute('src') || '';
-      if (!original.includes('/source/') || !original.endsWith('.gif')) return;
-      const staticSrc = original
-        .replace('/source/', '/static/')
-        .replace(/\.gif$/i, '.jpg');
-      img.setAttribute('src', staticSrc);
-    });
-    return;
-  }
+  // NOTE: reduced-motion 時の静止画差し替えは、
+  // /images/gifs/static/*.jpg が揃ってから別途実装する。
+  // 現段階では GIF をそのまま表示して視認性を優先する。
 
   const observer = new IntersectionObserver(
     (entries) => {
