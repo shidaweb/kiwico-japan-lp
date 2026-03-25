@@ -12,7 +12,7 @@ const {
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
-const ogImageUrl = new URL('/images/hero.jpg', Astro.site ?? Astro.url).toString();
+const ogImageUrl = new URL('/images/gifs/static/LAB1SPA-Hero.jpg', Astro.site ?? Astro.url).toString();
 ---
 
 <!doctype html>
@@ -33,6 +33,7 @@ const ogImageUrl = new URL('/images/hero.jpg', Astro.site ?? Astro.url).toString
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:site_name" content="KiwiCo Japan" />
     <meta property="og:locale" content="ja_JP" />
     <meta name="twitter:card" content="summary_large_image" />
