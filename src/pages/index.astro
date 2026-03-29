@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
@@ -13,6 +15,7 @@ import ProductHighlights from '../components/ProductHighlights.astro';
 import Awards from '../components/Awards.astro';
 import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
+import PreRegisterForm from '../components/PreRegisterForm.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -32,6 +35,7 @@ import Footer from '../components/Footer.astro';
     <Awards />
     <Testimonials />
     <FAQ />
+    <PreRegisterForm />
     <CTASection />
   </main>
   <Footer />

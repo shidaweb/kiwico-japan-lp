@@ -1,5 +1,7 @@
 # build output
 dist/
+.vercel/
+.wrangler/
 
 # generated types
 .astro/
@@ -15,7 +17,9 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.local
 .env.production
+.dev.vars
 
 # macOS-specific files
 .DS_Store
