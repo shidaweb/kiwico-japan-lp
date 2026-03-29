@@ -41,6 +41,22 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Cloudflare（本番デプロイ）
+
+`@astrojs/cloudflare` 利用時は、`dist/` 直下を静的ホストするだけでは **`dist/client/_astro/*.css` が配信されず**、見た目が崩れます（`/_astro/*.css` が 404）。
+
+次のいずれかで **Worker と静的アセットを一体デプロイ**してください。
+
+1. **CLI（推奨）**  
+   `npm run deploy`  
+   （内部で `astro build` のあと `wrangler deploy --config dist/server/wrangler.json` を実行）
+
+2. **Cloudflare Dashboard（Git 連携）**  
+   [Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/) 等で、ビルド後に上記と同じ `wrangler deploy --config dist/server/wrangler.json` を実行するよう設定する。  
+   従来の Pages だけで「ビルド出力ディレクトリ = `dist`」とする方式は、この構成では不十分です。
+
+詳細は [Deploy your Astro Site to Cloudflare](https://docs.astro.build/en/guides/deploy/cloudflare/) を参照してください。
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

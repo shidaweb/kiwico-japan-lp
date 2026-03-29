@@ -1,4 +1,7 @@
 {
+  // Dev / `astro dev` entry. After `npm run build`, deploy the Worker + static assets with:
+  //   npx wrangler deploy --config dist/server/wrangler.json
+  // (Cloudflare Pages で「ビルド出力ディレクトリ: dist」だけにすると、client/_astro の CSS が配信されずスタイルが壊れます。)
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "kiwico-jp-lp",
   "compatibility_date": "2025-03-01",
