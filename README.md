@@ -57,6 +57,18 @@ All commands are run from the root of the project, from a terminal:
 
 詳細は [Deploy your Astro Site to Cloudflare](https://docs.astro.build/en/guides/deploy/cloudflare/) を参照してください。
 
+### まだスタイルが崩れるとき（確認）
+
+1. 本番 HTML が参照している CSS を確認する（例: 開発者ツール → Network、または次のコマンド）:
+
+   ```bash
+   curl -sL https://kiwicojp.com/ | grep -o 'href="/_astro/[^"]*\.css"'
+   ```
+
+2. その URL に対して `curl -sI https://kiwicojp.com/_astro/（ファイル名）` を実行し、**200** になるか見る。 **404 のままならデプロイがまだ「静的 `dist` のみ」になっている**可能性が高いです。
+
+3. Git 連携の **Pages** で「ビルド出力ディレクトリ = `dist`」だけにしている場合は、**ビルド後に `wrangler deploy --config dist/server/wrangler.json` が走る設定**に変えるか、[Workers](https://developers.cloudflare.com/workers/) として同リポジトリをデプロイし直してください。
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
