@@ -18,8 +18,9 @@ export function readEnv(key: string): string | undefined {
 }
 
 export function resolveCsrfSecret(isDev: boolean): string | null {
-  const s = readEnv('CSRF_SECRET');
-  if (s && s.length >= 16) return s;
+  const raw = readEnv('CSRF_SECRET');
+  const s = typeof raw === 'string' ? raw.trim() : '';
+  if (s.length >= 16) return s;
   if (isDev) return 'astro-dev-csrf-insecure-do-not-use-in-prod';
   return null;
 }

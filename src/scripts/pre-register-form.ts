@@ -101,18 +101,44 @@ function validate(form: HTMLFormElement): boolean {
 async function loadCsrf(form: HTMLFormElement) {
   const input = form.querySelector<HTMLInputElement>('input[name="csrfToken"]');
   if (!input) return;
-  try {
-    const res = await fetch('/api/csrf');
-    if (!res.ok) throw new Error('csrf');
-    const data = (await res.json()) as { token?: string };
-    if (!data.token) throw new Error('csrf');
-    input.value = data.token;
-  } catch {
-    const top = form.querySelector('[data-form-error]');
+  const top = form.querySelector('[data-form-error]');
+  const showInitError = () => {
     if (top) {
       top.textContent = 'フォームの初期化に失敗しました。ページを再読み込みしてください。';
       top.classList.remove('hidden');
     }
+  };
+
+  try {
+    const res = await fetch('/api/csrf');
+    let data: { token?: string; error?: string } = {};
+    try {
+      data = (await res.json()) as { token?: string; error?: string };
+    } catch {
+      /* non-JSON body */
+    }
+
+    if (!res.ok) {
+      console.warn('[pre-register] /api/csrf failed:', res.status, data.error ?? res.statusText);
+      if (res.status === 503 && data.error === 'CSRF is not configured') {
+        console.warn(
+          '[pre-register] 本番 Worker に CSRF_SECRET（16文字以上）が未設定です。Cloudflare Dashboard の Variables / Secrets か wrangler secret put で登録してください。'
+        );
+      }
+      showInitError();
+      return;
+    }
+
+    if (!data.token) {
+      console.warn('[pre-register] /api/csrf: response had no token');
+      showInitError();
+      return;
+    }
+
+    input.value = data.token;
+  } catch (e) {
+    console.warn('[pre-register] /api/csrf fetch error:', e);
+    showInitError();
   }
 }
 

@@ -69,6 +69,10 @@ All commands are run from the root of the project, from a terminal:
 
 3. Git 連携の **Pages** で「ビルド出力ディレクトリ = `dist`」だけにしている場合は、**ビルド後に `wrangler deploy --config dist/server/wrangler.json` が走る設定**に変えるか、[Workers](https://developers.cloudflare.com/workers/) として同リポジトリをデプロイし直してください。
 
+### フォームが「初期化に失敗しました」と出るとき
+
+本番 Worker に **`CSRF_SECRET`（16 文字以上）** が入っていないと `/api/csrf` が 503 になり、事前登録フォームが動きません。`.dev.vars` はデプロイに含まれないため、[Variables and secrets](https://developers.cloudflare.com/workers/configuration/secrets/) で `CSRF_SECRET` を登録するか、`npm run build` のあと `npx wrangler secret put CSRF_SECRET --config dist/server/wrangler.json` を実行してください。ブラウザの開発者ツール（Console）にもヒントが出ます。
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
