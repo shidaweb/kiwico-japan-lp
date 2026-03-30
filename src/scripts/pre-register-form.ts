@@ -71,6 +71,25 @@ function validate(form: HTMLFormElement): boolean {
     ok = false;
   }
 
+  const priceRanges = getCheckedValues(form, 'price_ranges');
+  const notifications = getCheckedValues(form, 'notifications');
+  const usageImages = getCheckedValues(form, 'usage_images');
+
+  if (priceRanges.length === 0) {
+    setFieldError(form, 'price_ranges', '1つ以上選択してください');
+    ok = false;
+  }
+
+  if (notifications.length === 0) {
+    setFieldError(form, 'notifications', '1つ以上選択してください');
+    ok = false;
+  }
+
+  if (usageImages.length === 0) {
+    setFieldError(form, 'usage_images', '1つ以上選択してください');
+    ok = false;
+  }
+
   if (!consent) {
     setFieldError(form, 'consent', '個人情報の取り扱いに同意してください');
     ok = false;
@@ -118,8 +137,8 @@ function main() {
     const interests = getCheckedValues(form, 'interests');
     const themes = getCheckedValues(form, 'themes');
     const notifications = getCheckedValues(form, 'notifications');
-    const priceEl = form.querySelector<HTMLInputElement>('input[name="price_range"]:checked');
-    const usageEl = form.querySelector<HTMLInputElement>('input[name="usage_image"]:checked');
+    const price_ranges = getCheckedValues(form, 'price_ranges');
+    const usage_images = getCheckedValues(form, 'usage_images');
     const interest_other = (form.elements.namedItem('interest_other') as HTMLInputElement).value.trim();
     const theme_other = (form.elements.namedItem('theme_other') as HTMLInputElement).value.trim();
     const csrfToken = (form.elements.namedItem('csrfToken') as HTMLInputElement).value;
@@ -134,8 +153,8 @@ function main() {
       interests,
       themes,
       notifications,
-      price_range: priceEl?.value ?? null,
-      usage_image: usageEl?.value ?? null,
+      price_ranges,
+      usage_images,
       interest_other: interest_other || null,
       theme_other: theme_other || null,
       consent: consentChecked,

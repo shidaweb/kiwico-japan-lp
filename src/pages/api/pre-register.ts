@@ -45,13 +45,6 @@ function normalizeStrings(arr: unknown, allowed: readonly string[]): string[] | 
   return [...new Set(out)];
 }
 
-function optionalOne(value: unknown, allowed: readonly string[]): string | null {
-  if (value === undefined || value === null || value === '') return null;
-  if (typeof value !== 'string') return null;
-  if (!allowed.includes(value)) return null;
-  return value;
-}
-
 function clip(s: string, max: number): string {
   return s.length <= max ? s : s.slice(0, max);
 }
@@ -118,22 +111,47 @@ export const POST: APIRoute = async ({ request }) => {
 
   const interests = normalizeStrings(body.interests, INTEREST_CHOICES);
   const themes = normalizeStrings(body.themes, THEME_CHOICES);
-  let notifications: string[];
-  if (body.notifications === undefined || body.notifications === null) {
-    notifications = [];
-  } else {
-    const n = normalizeStrings(body.notifications, NOTIFICATION_CHOICES);
-    if (!n) {
-      return new Response(JSON.stringify({ error: '案内希望の選択が不正です' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-    notifications = n;
-  }
-  const priceRange = optionalOne(body.price_range, PRICE_CHOICES);
-  const usageImage = optionalOne(body.usage_image, USAGE_CHOICES);
+  const notifications = normalizeStrings(body.notifications, NOTIFICATION_CHOICES);
+  const price_ranges = normalizeStrings(body.price_ranges, PRICE_CHOICES);
+  const usage_images = normalizeStrings(body.usage_images, USAGE_CHOICES);
   const consent = body.consent === true;
+
+  if (notifications === null) {
+    return new Response(JSON.stringify({ error: '案内希望の選択が不正です' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  if (notifications.length === 0) {
+    return new Response(JSON.stringify({ error: '案内希望を1つ以上選択してください' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  if (price_ranges === null) {
+    return new Response(JSON.stringify({ error: '価格帯の選択が不正です' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  if (price_ranges.length === 0) {
+    return new Response(JSON.stringify({ error: '価格帯を1つ以上選択してください' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  if (usage_images === null) {
+    return new Response(JSON.stringify({ error: 'ご利用イメージの選択が不正です' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  if (usage_images.length === 0) {
+    return new Response(JSON.stringify({ error: 'ご利用イメージを1つ以上選択してください' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   if (!emailRaw || !nameRaw || !childrenAgesRaw || !interests?.length || !themes?.length || !consent) {
     return new Response(JSON.stringify({ error: '必須項目を入力してください' }), {
@@ -198,9 +216,9 @@ export const POST: APIRoute = async ({ request }) => {
       interest_other,
       themes,
       theme_other,
-      price_range: priceRange,
+      price_ranges,
       notifications,
-      usage_image: usageImage,
+      usage_images,
       consent,
       ip_address: ip,
       user_agent: ua,
@@ -218,7 +236,9 @@ export const POST: APIRoute = async ({ request }) => {
 
   const interestsStr = interests.join('、');
   const themesStr = themes.join('、');
-  const notificationsStr = notifications.length ? notifications.join('、') : '未選択';
+  const notificationsStr = notifications.join('、');
+  const priceRangesStr = price_ranges.join('、');
+  const usageImagesStr = usage_images.join('、');
   const createdJa = new Date(row.created_at).toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
 
   const e = {
@@ -229,8 +249,8 @@ export const POST: APIRoute = async ({ request }) => {
     themesStr: escapeHtml(themesStr),
     interest_other: interest_other ? escapeHtml(interest_other) : '',
     theme_other: theme_other ? escapeHtml(theme_other) : '',
-    price_range: escapeHtml(priceRange ?? '未回答'),
-    usage_image: escapeHtml(usageImage ?? '未回答'),
+    price_ranges_str: escapeHtml(priceRangesStr),
+    usage_images_str: escapeHtml(usageImagesStr),
     notificationsStr: escapeHtml(notificationsStr),
     createdJa: escapeHtml(createdJa),
   };
@@ -246,8 +266,9 @@ export const POST: APIRoute = async ({ request }) => {
     <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お子様の年齢</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.children_ages}</td></tr>
     <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">興味のある点</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.interestsStr}${e.interest_other ? `<br>（その他: ${e.interest_other}）` : ''}</td></tr>
     <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">関心テーマ</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.themesStr}${e.theme_other ? `<br>（その他: ${e.theme_other}）` : ''}</td></tr>
-    <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">価格帯</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.price_range}</td></tr>
-    <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">ご利用イメージ</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.usage_image}</td></tr>
+    <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">価格帯</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.price_ranges_str}</td></tr>
+    <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">案内希望</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.notificationsStr}</td></tr>
+    <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">ご利用イメージ</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${e.usage_images_str}</td></tr>
   </table>
   <p>サービス開始時期が決まり次第、優先的にご案内いたします。<br>今しばらくお待ちください。</p>
   <p style="margin-top: 30px; color: #666;">KiwiCo Japan チーム<br><a href="https://kiwicojp.com" style="color: #16a34a;">https://kiwicojp.com</a></p>
@@ -262,9 +283,9 @@ export const POST: APIRoute = async ({ request }) => {
     <li><strong>子供の年齢:</strong> ${e.children_ages}</li>
     <li><strong>興味:</strong> ${e.interestsStr}${e.interest_other ? `（その他: ${e.interest_other}）` : ''}</li>
     <li><strong>テーマ:</strong> ${e.themesStr}${e.theme_other ? `（その他: ${e.theme_other}）` : ''}</li>
-    <li><strong>価格帯:</strong> ${e.price_range}</li>
+    <li><strong>価格帯:</strong> ${e.price_ranges_str}</li>
     <li><strong>案内希望:</strong> ${e.notificationsStr}</li>
-    <li><strong>利用イメージ:</strong> ${e.usage_image}</li>
+    <li><strong>利用イメージ:</strong> ${e.usage_images_str}</li>
     <li><strong>登録日時:</strong> ${e.createdJa}</li>
   </ul>
 </div>`;

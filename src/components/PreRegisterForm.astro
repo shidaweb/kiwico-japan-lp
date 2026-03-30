@@ -151,28 +151,28 @@ const checkInputClass =
           </fieldset>
 
           <fieldset class="space-y-2">
-            <legend class={labelClass}>月額または1回あたりの価格として、どのくらいなら検討しやすいですか？</legend>
-            <p class={hintClass}>任意・1つだけ選択</p>
+            <legend class={labelClass}>
+              月額または1回あたりの価格として、どのくらいなら検討しやすいですか？ <span class="text-red-500">*</span>
+            </legend>
+            <p class={hintClass}>必須・複数選択可</p>
             <div class={groupBoxClass}>
               {
                 PRICE_CHOICES.map((label) => (
                   <label class={checkLabelClass}>
-                    <input
-                      type="radio"
-                      name="price_range"
-                      value={label}
-                      class="mt-1 h-4 w-4 shrink-0 border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                    />
+                    <input type="checkbox" name="price_ranges" value={label} class={checkInputClass} />
                     <span>{label}</span>
                   </label>
                 ))
               }
             </div>
+            <p class="hidden text-sm text-red-600 mt-1" data-error-for="price_ranges"></p>
           </fieldset>
 
           <fieldset class="space-y-2">
-            <legend class={labelClass}>今後、以下のご案内を受け取りますか？</legend>
-            <p class={hintClass}>任意・複数選択可</p>
+            <legend class={labelClass}>
+              今後、以下のご案内を受け取りますか？ <span class="text-red-500">*</span>
+            </legend>
+            <p class={hintClass}>必須・複数選択可</p>
             <div class={groupBoxClass}>
               {
                 NOTIFICATION_CHOICES.map((label) => (
@@ -183,26 +183,25 @@ const checkInputClass =
                 ))
               }
             </div>
+            <p class="hidden text-sm text-red-600 mt-1" data-error-for="notifications"></p>
           </fieldset>
 
           <fieldset class="space-y-2">
-            <legend class={labelClass}>ご利用イメージに近いものを教えてください</legend>
-            <p class={hintClass}>任意・1つだけ選択</p>
+            <legend class={labelClass}>
+              ご利用イメージに近いものを教えてください <span class="text-red-500">*</span>
+            </legend>
+            <p class={hintClass}>必須・複数選択可</p>
             <div class={groupBoxClass}>
               {
                 USAGE_CHOICES.map((label) => (
                   <label class={checkLabelClass}>
-                    <input
-                      type="radio"
-                      name="usage_image"
-                      value={label}
-                      class="mt-1 h-4 w-4 shrink-0 border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                    />
+                    <input type="checkbox" name="usage_images" value={label} class={checkInputClass} />
                     <span>{label}</span>
                   </label>
                 ))
               }
             </div>
+            <p class="hidden text-sm text-red-600 mt-1" data-error-for="usage_images"></p>
           </fieldset>
 
           <div>
